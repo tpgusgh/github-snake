@@ -23,7 +23,7 @@ jobs:
 
       - name: push to githubsnake repo
         run: |
-          rm -rf dist/.git
+          sudo rm -rf dist/.git
           cd dist
           git init
           git config user.name "tpgusgh"
