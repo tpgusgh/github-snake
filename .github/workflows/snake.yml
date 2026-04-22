@@ -23,8 +23,9 @@ jobs:
 
       - name: push to githubsnake repo
         run: |
-          sudo rm -rf dist/.git
-          cd dist
+          mkdir output
+          cp dist/*.svg output/
+          cd output
           git init
           git config user.name "tpgusgh"
           git config user.email "kimhyunhi1@gmail.com"
