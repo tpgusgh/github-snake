@@ -21,11 +21,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: push to another repo's main
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          repo: tpgusgh/githubsnake
-          target_branch: main
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: push to githubsnake repo
+        run: |
+          cd dist
+          git init
+          git config user.name "tpgusgh"
+          git config user.email "kimhyunhi1@gmail.com"
+          git add .
+          git commit -m "update snake animation"
+          git push --force https://${{ secrets.PAT_TOKEN }}@github.com/tpgusgh/githubsnake.git main
