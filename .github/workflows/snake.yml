@@ -9,7 +9,7 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
       - name: generate github-contribution-grid-snake.svg
         uses: Platane/snk@v3
@@ -21,14 +21,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: push to githubsnake repo
-        run: |
-          mkdir output
-          cp dist/*.svg output/
-          cd output
-          git init -b main
-          git config user.name "tpgusgh"
-          git config user.email "kimhyunhi1@gmail.com"
-          git add .
-          git commit -m "update snake animation"
-          git push --force https://${{ secrets.PAT_TOKEN }}@github.com/tpgusgh/githubsnake.git main
+      - name: push to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: output
+          publish_dir: ./dist
